@@ -1,0 +1,136 @@
+/* =============================================================================
+   general
+   ========================================================================== */
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+body, button, input, select, textarea { font-family: sans-serif; font-size: 12px; }
+nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
+input:invalid, textarea:invalid { background-color: #f0dddd; }
+input:valid, textarea:valid { }
+a {text-decoration: none; }
+
+/* =============================================================================
+   index page 
+   ========================================================================== */
+.index { background: #959796 url(../images/index.jpg); }
+.index h1 { font: bold 65px/60px Helvetica, Arial, Sans-serif; text-align: center; color: #eee; text-shadow: 0px 2px 6px #333; }
+.indexcontainer { width: 100%;  }
+.indexgallery { list-style: none; }
+.indexgallery li a { margin: 10px;width:250px ;position: relative; float: left; padding: 10px 10px 40px 10px; background: #fff; border: none; box-shadow: 0px 3px 15px #333; -webkit-box-shadow: 0px 3px 15px #333; -moz-box-shadow: 0px 3px 15px #333; -o-box-shadow: 0px 3px 15px #333; }   
+/*
+.indexgallery li a.indexpic1 { z-index: 5; transform: rotate(-10deg); -webkit-transform: rotate(-10deg); -moz-transform: rotate(-10deg); -o-transform: rotate(-10deg); }
+.indexgallery li a.indexpic2 { z-index: 6; transform: rotate(-3deg); -webkit-transform: rotate(-3deg); -moz-transform: rotate(-3deg); -o-transform: rotate(-3deg); }
+.indexgallery li a.indexpic3 { z-index: 3; transform: rotate(4deg); -webkit-transform: rotate(4deg); -moz-transform: rotate(4deg); -o-transform: rotate(4deg); }
+.indexgallery li a.indexpic4 { z-index: 4; transform: rotate(14deg); -webkit-transform: rotate(14deg); -moz-transform: rotate(14deg); -o-transform: rotate(14deg); }
+.indexgallery li a:hover { z-index: 10; box-shadow: 3px 6px 15px #333333; -webkit-box-shadow: 3px 6px 15px #333333; -moz-box-shadow: 3px 6px 15px #333333; -o-box-shadow: 3px 6px 15px #333333; }
+*/
+
+.indexgallery label { font-size:12px; font-family:"Lucida handwriting", "Snell Roundhand", "Helvetica Neue", Arial, Helvetica, sans-serif; }
+
+/* =============================================================================
+   body
+   ========================================================================== */
+body { color: #6ba741; background-color: #f5f5f5; cursor: default; width: 1410px; }
+
+/* =============================================================================
+   header
+   ========================================================================== */
+.header { float: left;  color: #ffffff;  background-color: #6ba741;  width: 100%; }
+
+/* =============================================================================
+   header menu 
+   ========================================================================== */
+.headermenu { }
+.headermenulist { }
+.headermenulistitem { color: #d6d6d6; background-color: #6ba741; padding: 10px; margin: 0px; float: left; }
+.headermenulistitemlist { display: none; position: absolute; }
+.headermenulistitemlistitem { color: #d6d6d6; background-color: #6ba741; padding: 10px; margin: 0px; float: none; }
+.headermenulistitem:hover { color: #ffffff; background-color: #6ba741; }
+.headermenulistitem:hover .headermenulistitemlist { display: block; opacity: 0.8; }
+.headermenulistitemlistitem:hover { color: #ffffff; background-color: #6ba741; }
+
+/* =============================================================================
+   header info
+   ========================================================================== */
+.headerinfo { }
+.headerinfolist { }
+.headerinfolistitem { color: #ffffff; background-color: #6ba741; padding: 10px; margin: 1px; float: right; }
+
+/* =============================================================================
+   padding
+   ========================================================================== */
+.padding { clear: left; float: left; color: #d6d6d6; background-color: #f5f5f5; padding: 5px; position: relative; }
+
+/* =============================================================================
+   splitter
+   ========================================================================== */
+.splitter { clear: right; float: right; color: #d6d6d6; background-color: #f5f5f5; padding: 3px; position: relative; }
+
+/* =============================================================================
+   browser menu and menu lists
+   ========================================================================== */
+.browser { clear: left; float: left; color: #000000; background-color: #ffffff; width: 300px; height: 600px; }
+.browser label { color: #d6d6d6; font-weight: bold; }
+.browser input { margin-bottom: 5px; }
+.browsermenu { }
+.browsermenulist {}
+.browsermenulistitem { padding: 10px; margin: 1px; }
+.browsermenulistitemh2 { color: #000000; background-color: #efece0; padding: 10px; margin: 1px; }
+#logentries { height: 540px;}
+
+/* =============================================================================
+   homepage chart
+   ========================================================================== */
+.homepage { clear: right; float: right; width: 1080px; color: #000000; background-color: #ffffff; padding: 10px; margin: 1px; height: 580px;}
+.homepageh2 { color: #000000; background-color: #efece0; padding: 10px; margin: 1px; }
+#logdetails { height: 540px;}
+
+/* =============================================================================
+   footer
+   ========================================================================== */
+.footer { clear: right; float: right; width: 1080px; color: #000000; background-color: #f5f5f5; padding: 10px; margin: 1px; }
+.footer h5 { color: red; font-weight: bold; }
+
+/* =============================================================================
+   other
+   ========================================================================== */
+.ui-dialog { color: #222222; font-size: 12px; } 
+
+.scroll { overflow: scroll; }
+
+.hidden { display: none; }
+
+#poweredby.image { clear: both; float: right; padding: 10px 0px 10px 0px;}
+
+/*
+#poweredby.image { float: right; -moz-transform: scale(.6); -webkit-transform: scale(.6); -o-transform: scale(.6); transform: scale(.6); }
+*/
+
+/* =============================================================================
+   messages
+   ========================================================================== */
+#messages { list-style: none; list-style-image: none; margin: 0px; padding: 0px; width: 100%; font-family: "Helvetica Neue"; font-size:11px ; } /*font-family: "American Typewriter"; font-size: 11px}*/
+
+#messages :nth-child(odd) { background: rgba(107, 167, 65, .1) } /*background: rgba(50,50,50,0.1); }*/
+
+#messages :nth-child(odd):hover { background: rgba(107, 167, 65, 1.0); }
+
+#messages :nth-child(even) { background: rgba(107, 167, 65, 0.2); }
+
+#messages :nth-child(even):hover { background: rgba(107, 167, 65, 1.0); }
+
+#messages :nth-child(3n+1) { -webkit-transform: rotate(-0.6deg); -moz-transform: rotate(-0.6deg); -o-transform: rotate(-0.6deg); transform: rotate(-0.6deg); }
+
+#messages :nth-child(3n+2) { -webkit-transform: rotate(0.5deg); -moz-transform: rotate(0.5deg); -o-transform: rotate(0.5deg); transform: rotate(0.5deg); }
+
+#messages :nth-child(3n+3) { -webkit-transform: rotate(0.2deg); -moz-transform: rotate(0.2deg); -o-transform: rotate(0.2deg); transform: rotate(0.2deg); }
+
+#messages li { float: none; cursor: pointer; color: #222222; background: #AAB300; margin: 1px; padding: 10px 10px 10px 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; -o-border-radius: 10px; border-radius: 10px; }
+
+#messages li pre { display: none; }
+
+/*
+#messages li:hover pre { display: block; color: #222222; width: 400%; font-family: "Courier New"} 
+*/
+
+#messagedetails pre {float: none; cursor: pointer; color: #222222; background: rgba(107, 167, 65, 0.1); margin: 10px; padding: 10px 10px 10px 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; -o-border-radius: 10px; border-radius: 10px; -webkit-transform: rotate(-0.6deg); -moz-transform: rotate(-0.6deg); -o-transform: rotate(-0.6deg); transform: rotate(-0.6deg); font-size:18px; width: 96%;}
+

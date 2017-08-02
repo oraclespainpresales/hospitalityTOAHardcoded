@@ -1,0 +1,164 @@
+<definitions name="toa_agent_interface" targetNamespace="urn:toatech:agent" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:toatech:agent">
+   <types>
+      <xsd:schema elementFormDefault="qualified" targetNamespace="urn:toatech:agent">
+         <!--SHARED-->
+         <xsd:complexType name="user_t">
+            <xsd:sequence>
+               <xsd:element name="now" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="login" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="company" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="auth_string" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <!--SEND MESSAGE-->
+         <xsd:complexType name="message_t">
+            <xsd:sequence>
+               <xsd:element name="app_host" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="app_port" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="app_url" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="message_id" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="company_id" type="xsd:long" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="address" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="send_to" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="subject" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="body" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="message_response_t">
+            <xsd:sequence>
+               <xsd:element name="message_id" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="status" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="data" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="external_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="duration" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="sent" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="messages_t">
+            <xsd:sequence>
+               <xsd:element name="message" type="tns:message_t" minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="send_message_t">
+            <xsd:sequence>
+               <xsd:element name="user" type="tns:user_t" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="messages" type="tns:messages_t" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="send_message_response_t">
+            <xsd:sequence>
+               <xsd:element name="message_response" type="tns:message_response_t" minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <!--DROP MESSAGE-->
+         <xsd:complexType name="message_id_t">
+            <xsd:sequence>
+               <xsd:element name="message_id" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="message_ids_t">
+            <xsd:sequence>
+               <xsd:element name="message" type="tns:message_id_t" minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="drop_message_t">
+            <xsd:sequence>
+               <xsd:element name="user" type="tns:user_t" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="messages" type="tns:message_ids_t" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="result_t">
+            <xsd:sequence>
+               <xsd:element name="code" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="desc" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="message_id_response_t">
+            <xsd:sequence>
+               <xsd:element name="message_id" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+               <xsd:element name="result" type="tns:result_t" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <xsd:complexType name="drop_message_response_t">
+            <xsd:sequence>
+               <xsd:element name="message_response" type="tns:message_id_response_t" minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:complexType>
+         <!--ELEMENTS-->
+         <xsd:element name="send_message" type="tns:send_message_t"/>
+         <xsd:element name="send_message_response" type="tns:send_message_response_t"/>
+         <xsd:element name="drop_message" type="tns:drop_message_t"/>
+         <xsd:element name="drop_message_response" type="tns:drop_message_response_t"/>
+         <xsd:element name="get_message_status" type="tns:drop_message_t"/>
+         <xsd:element name="get_message_status_response" type="tns:drop_message_response_t"/>
+      </xsd:schema>
+   </types>
+   <message name="send_message_m">
+      <part name="parameters" element="tns:send_message"/>
+   </message>
+   <message name="send_message_response_m">
+      <part name="parameters" element="tns:send_message_response"/>
+   </message>
+   <message name="drop_message_m">
+      <part name="parameters" element="tns:drop_message"/>
+   </message>
+   <message name="drop_message_response_m">
+      <part name="parameters" element="tns:drop_message_response"/>
+   </message>
+   <message name="get_message_status_m">
+      <part name="parameters" element="tns:get_message_status"/>
+   </message>
+   <message name="get_message_status_response_m">
+      <part name="parameters" element="tns:get_message_status_response"/>
+   </message>
+   <portType name="agent_port_type">
+      <operation name="send_message">
+         <input message="tns:send_message_m"/>
+         <output message="tns:send_message_response_m"/>
+      </operation>
+      <operation name="drop_message">
+         <input message="tns:drop_message_m"/>
+         <output message="tns:drop_message_response_m"/>
+      </operation>
+      <operation name="get_message_status">
+         <input message="tns:get_message_status_m"/>
+         <output message="tns:get_message_status_response_m"/>
+      </operation>
+   </portType>
+   <binding name="agent_binding" type="tns:agent_port_type">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <operation name="send_message">
+         <soap:operation soapAction="agent_service/send_message" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         </input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+      </operation>
+      <operation name="drop_message">
+         <soap:operation soapAction="agent_service/drop_message" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         </input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+      </operation>
+      <operation name="get_message_status">
+         <soap:operation soapAction="agent_service/get_message_status" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         </input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+      </operation>
+   </binding>
+   <service name="agent_service">
+      <port binding="tns:agent_binding" name="agent_interface">
+         <soap:address location="<SOAP_ADDRESS>"/>
+      </port>
+   </service>
+</definitions>

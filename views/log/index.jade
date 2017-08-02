@@ -1,0 +1,47 @@
+extends layout
+
+block content
+
+  section#browser.browser
+
+    nav#browsermenu.browsermenu
+
+      ul#browsermenulist.browsermenulist
+
+        li#browsermenulistitem1.browsermenulistitem
+
+          h2#logs.browsermenulistitemh2 Log Entries
+
+          article#logentries.scroll
+
+            ul#messages
+
+  section#homepage.homepage
+
+    h2#homepage.homepageh2 Log Details
+
+    article#logdetails.scroll
+      
+      div#messagedetails
+
+  div.splitter
+
+  footer#footer.footer
+    noscript
+      h5 Please activate javascript and refresh the page.
+
+  img#poweredby.image(src="log/images/logotype-poweredby.png")
+
+
+  script(type="text/javascript", src="log/javascripts/date.js")
+
+  script(type="text/javascript", src="/socket.io/socket.io.js")
+
+  script(type="text/javascript", src="log/javascripts/jquery-1.7.1.min.js")
+
+  script(type="text/javascript", src="log/javascripts/jquery.scrollbars.min.js")
+
+  script(type="text/javascript", src="log/javascripts/xml2json.js")
+
+  script(type="text/javascript", src="log/javascripts/script.js")
+
