@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta content="IE=edge">
+
+      <title>WEDO Hospitality</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link href="root/stylesheets/bootstrap.min.css" rel="stylesheet"></link>
+
+      <link href="root/stylesheets/font-awesome.css" rel="stylesheet"></link>
+
+      <link href="root/stylesheets/fullcalendar.css" rel="stylesheet"></link>
+
+      <link href="root/stylesheets/date.ribbon.css" rel="stylesheet"></link>
+
+      <link href="wedo_hospitality/stylesheets/wedo_hospitality.css" rel="stylesheet"></link>
+
+      <script type="text/javascript" src="root/javascripts/sha256.js"></script>
+
+      <script type="text/javascript" src="root/javascripts/jquery.min.js"></script>
+
+      <script type="text/javascript" src="root/javascripts/jquery.panzoom.js"></script>
+
+      <script type="text/javascript" src="root/javascripts/bootstrap.min.js"></script>
+
+      <script type="text/javascript" src="root/javascripts/jquery.blockUI.js"></script>
+
+      <script type="text/javascript" src="root/javascripts/fullcalendar.min.js"></script>
+
+      <script type="text/javascript" src="root/javascripts/blue.json.date.ribbon.js"></script>
+
+      <script type="text/javascript" src="root/javascripts/xml2json.js"></script>
+
+      <script type="text/javascript" src="wedo_hospitality/javascripts/wedo_hospitality.js"></script>
+   </head>
+
+   <body>
+      <div class="container">
+      <noscript>
+         <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-="true">×</button>
+            <span><strong>Notice: </strong> JavaScript is not enabled. <a href="//enable-javascript.com/" class="alert-link">Please Enable JavaScript Safley</a>.</span>
+         </div>
+      </noscript>
+
+      <div class="row clearfix" >
+               <br></br>
+               <div class="rowheader">What to do, where and when</div>
+
+               <div class="col-md-5 colbody">
+                  <div class="colheader route">
+                     <p class="info" id="worktype"></p>
+                     <p class="info" id="priority"></p>
+                     <p class="info" id="status"></p>
+                     <p class="info" id="duration"></p>
+                  </div>
+                  <p class="info" id="name"></p>
+                  <p class="info" id="cell"></p>
+               </div>
+
+               <div class="col-md-1 colbody">
+                  <div id="ribbon1"></div>
+               </div>
+
+               <div class="col-md-3 colbody">
+                  <img id="sensorphoto" src="wedo_hospitality/images/imagenotavailable.jpg"></img>
+                  <p class="info" id="sensor"></p>
+               </div>
+
+               <div class="col-md-3 colbody">
+                  <div class="panzoom-parent">
+                     <div id="map-ctl" style="width: 90px; height: 339px; z-index: 0; text-align: left; position: absolute; left: -1px; top: 5px; z-index: 10000;">
+                        <!--<div style="position: absolute; left: 0px; top: 0px; width: 90px; height: 90px;">
+                        <div id="pan-ctl" style="position: absolute; left: 16px; top: 17px; overflow: hidden;">
+                        </div>
+                        </div>-->
+                        <div id="pan-ctl" style="position: absolute; left: 15px; top: 15px;">
+                          <div title="Pan up" id="pan-u" style="position: absolute; left: 22px; top: 3px; cursor: pointer;"></div>
+                          <div title="Pan left" id="pan-l" style="position: absolute; left: 2px; top: 23px; cursor: pointer;"></div>
+                          <div title="Pan right" id="pan-r" style="position: absolute; left: 42px; top: 23px; cursor: pointer;"></div>
+                          <div title="Pan down" id="pan-d" style="position: absolute; left: 22px; top: 43px; cursor: pointer;"></div>
+                          <div title="Reset" id="reset" style="position: absolute; left: 22px; top: 23px; cursor: pointer;"></div>
+                        </div>
+                        <div id="zoomin-ctl" style="position: absolute; left: 34px; top: 100px; width: 22px; height: 22px; overflow: hidden; z-index: 10001; background-color: transparent;">
+                          <div title="Zoom In" class="icon" style="position: absolute; left: 0px; top: 0px; width: 22px; height: 22px; cursor: pointer;"></div>
+                        </div>
+                        <div id="zoomout-ctl" style="position: absolute; left: 34px; top: 130px; width: 22px; height: 22px; text-align: left; z-index: 10003; background-color: transparent;">
+                          <div title="Zoom Out" class="icon" style="position: absolute; left: 0px; top: 0px; width: 22px; height: 22px; cursor: pointer;"></div>
+                        </div>
+                     </div>
+                     <img class="panzoom" id="roomphoto" src="wedo_hospitality/images/imagenotavailable.jpg"></img>
+                  </div>
+                  <p class="info" id="room"></p>
+               </div>
+      </div>
+
+      <div class="row clearfix" >
+               <br></br>
+               <div class="rowheader">Who is the technician and when he arrives</div>
+
+               <div class="col-md-3 colbody">
+                  <img id="file_data" src="wedo_hospitality/images/imagenotavailable.jpg"></img>
+               </div>
+
+               <div class="col-md-3 colbody">
+                  <button onclick="sendCozmo()" class="blue-pill">Send technician</button>
+               </div>
+               <script type="text/javascript">
+                 function sendCozmo(){
+                   $.ajax({
+                       url: "COZMO_ENDPOINT",
+                       dataType: 'json',
+                       //beforeSend: function (xhr) {
+                           //xhr.setRequestHeader('Authorization', 'Basic ');
+                       //},
+                       type: "POST",
+                       async:true,
+                       success: function(data,status) {
+                            console.log('cozmo sent: ' + data)
+                       },
+                       error: function (text,status) { console.log('error sending cozmo: ' + status) }
+                   });
+                 }
+               </script>
+               <div class="col-md-5 colbody">
+                  <p class="info" id="resourcename"></p>
+                  <p class="info" id="credence"></p>
+                  <p class="info" id="remail"></p>
+                  <p class="info" id="rphone"></p>
+               </div>
+
+               <div class="col-md-1 colbody">
+                  <div id="ribbon2"></div>
+               </div>
+      </div>
+
+      <br></br>
+
+      <div id="spinner" class="spinner">
+         <div class="bar1"></div>
+         <div class="bar2"></div>
+         <div class="bar3"></div>
+         <div class="bar4"></div>
+         <div class="bar5"></div>
+         <div class="bar6"></div>
+         <div class="bar7"></div>
+         <div class="bar8"></div>
+         <div class="bar9"></div>
+         <div class="bar10"></div>
+         <div class="bar11"></div>
+         <div class="bar12"></div>
+      </div>
+
+      <div class="modal fade" id="main-modal" tabindex="-1" role="dialog" aria-labelledby="main-model-label" aria-="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-="true">&times;</button>
+                  <h4 class="modal-title" id="main-model-label">Confirmation Page</h4>
+               </div>
+               <div class="modal-body">
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirm">Confirm</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </body>
+</html>
