@@ -18,7 +18,7 @@ var socketio = require('socket.io'),
 
     soap = require('soap'),
 
-    readfile = require('fs').readFileSync, 
+    readfile = require('fs').readFileSync,
 
     inspect = require('util').inspect;
 
@@ -32,7 +32,7 @@ app.configure(function(){
   app.use(express.json());
 
   app.use(express.logger());
-  
+
   app.use(express.urlencoded());
 
   app.set('view engine', 'jade');
@@ -74,7 +74,7 @@ app.configure(function(){
  */
 var now = require('./routes/now/services');
 
-var anki = require('./routes/anki/services');
+var wedo_hospitality = require('./routes/wedo_hospitality/services');
 
 var log = require('./routes/log/services');
 
@@ -83,7 +83,7 @@ var log = require('./routes/log/services');
  */
 app.get('/now', now.index);
 
-app.get('/anki', anki.anki);
+app.get('/wedo_hospitality', wedo_hospitality.wedo_hospitality);
 
 app.get('/', log.index);
 
@@ -91,9 +91,9 @@ app.get('/', log.index);
  * Application routes.
  */
 
-app.post('/anki/read', anki.read);
+app.post('/wedo_hospitality/read', wedo_hospitality.read);
 
-app.post('/anki/create', anki.create);
+app.post('/wedo_hospitality/create', wedo_hospitality.create);
 
  app.get('/now/request', now.getDatetime);
 
@@ -158,7 +158,7 @@ var wsdl = readfile(path.resolve(app.get('wsdl')), 'utf8');
 
 // replace SOAP_ADDRESS
 //if (process.env.SOAP_ADDRESS) {
-  //wsdl = wsdl.replace(/<SOAP_ADDRESS>/g, process.env.SOAP_ADDRESS); 
+  //wsdl = wsdl.replace(/<SOAP_ADDRESS>/g, process.env.SOAP_ADDRESS);
 
 //} else {
   //wsdl = wsdl.replace(/<SOAP_ADDRESS>/g, app.get('SOAP_ADDRESS'));
@@ -180,7 +180,7 @@ var toa_agent_interface = {
 
                 // save responses
                 args.messages.message.forEach(function(msg) {
- 
+
                 message_response.push({
                     'message_id': parseFloat(msg.message_id),
                     'status': 'sent'
