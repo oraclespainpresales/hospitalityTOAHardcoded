@@ -245,7 +245,7 @@ $(document).ready(function() {
 
               $('#sensor').html("<span class='fa fa-sliders'></span> " + app.getSensor(app.sensor).name);
 
-              $('#sensorphoto').attr('src', app.getSensor(app.sensor).image);
+              //$('#sensorphoto').attr('src', app.getSensor(app.sensor).image);
 
               $('#room').html("<span class='fa fa-bed'></span> Room " + app.room);
 
