@@ -484,7 +484,7 @@ $(document).ready(function() {
           },
           {
             label: 'car',
-            value: app.sensor
+            value: 'Skull'
           }
 
         ]}
