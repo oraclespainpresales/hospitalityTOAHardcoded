@@ -369,15 +369,17 @@ $(document).ready(function() {
               // set content
               $('#worktype').html(app.getWorktype(app.activity['worktype']).name);
 
-              $('#name').html("<strong>" + app.activity['name'] + "</strong>");
+              //$('#name').html("<strong>" + app.activity['name'] + "</strong>");
+              $('#name').html("<strong>Send Cozmo</strong>");
 
-              $('#cell').html("<span class='fa fa-phone'></span> " + app.activity['cell']);
+              //$('#cell').html("<span class='fa fa-phone'></span> " + app.activity['cell']);
 
               $('#sensor').html("<span class='fa fa-sliders'></span> " + app.getSensor(app.activity['car']).name);
 
-              $('#sensorphoto').attr('src', app.getSensor(app.activity['car']).image);
+              //$('#sensorphoto').attr('src', app.getSensor(app.activity['car']).image);
 
-              $('#room').html("<span class='fa fa-bed'></span> Room " + app.activity['track']);
+              //$('#room').html("<span class='fa fa-bed'></span> Room " + app.activity['track']);
+              $('#room').html("<span class='fa fa-bed'></span> Room 21");
 
               $('#roomphoto').panzoom("zoom", 1, {increment: 0.1});
 
@@ -408,9 +410,9 @@ $(document).ready(function() {
 
               $('#credence').html(app.resource['credence']);
 
-              $('#rphone').html("<span class='fa fa-phone'></span> " + app.resource['phone']);
+              //$('#rphone').html("<span class='fa fa-phone'></span> " + app.resource['phone']);
 
-              $('#remail').html("<span class='fa fa-envelope'></span> " + app.resource['email']);
+              //$('#remail').html("<span class='fa fa-envelope'></span> " + app.resource['email']);
 
               if (app.resource['file_data'].length>0) $('#file_data').attr('src', 'data:' + app.resource["mime_type"] + ';base64, ' + app.resource["file_data"]);
 
