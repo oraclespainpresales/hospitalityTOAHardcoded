@@ -83,7 +83,7 @@ $(document).ready(function() {
     ],
 
     rooms:[
-      {id:'28', label: 'room 01', panX: 0, panY: 0},
+      {id:'28', label: 'room 99', panX: 0, panY: 0},
     ],
 
     // activity details
@@ -94,6 +94,7 @@ $(document).ready(function() {
 
     // get room
     getRoom: function(a) {
+      console.log("getRoom: " + a);
       // get the room details
       for (i in this.rooms){
         if (this.rooms[i].label == a)
@@ -105,6 +106,7 @@ $(document).ready(function() {
 
     // get sensor
     getSensor: function(a) {
+      console.log("getSensor: " + a);
       // get the sensor details
       for (i in this.sensors){
         if (this.sensors[i].label == a)
@@ -116,6 +118,7 @@ $(document).ready(function() {
 
     // get worktype
     getWorktype: function(a) {
+      console.log("getWorkType: " + a);
       // get the work type details
       for (i in this.worktypes){
         if (this.worktypes[i].label == a)
@@ -127,6 +130,7 @@ $(document).ready(function() {
 
     // get priority
     getPriority: function(a) {
+      console.log("getPriority: " + a);
       // get the priority details
       for (i in this.priorities){
         if (this.priorities[i].label == a)
