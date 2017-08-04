@@ -175,9 +175,9 @@ $(document).ready(function() {
 
       this.status = "pending";
 
-      this.sensor = getUrlVars(document.URL).se||'unknown';
+      this.sensor = getUrlVars(document.URL).ca||'unknown';
 
-      this.room = this.getRoom(getUrlVars(document.URL).ro).id.lpad("0",2)||'unknown';
+      this.room = this.getRoom(getUrlVars(document.URL).tr).id.lpad("0",2)||'unknown';
 
       // get activity
       this.getActivity();
@@ -224,6 +224,7 @@ $(document).ready(function() {
             data: myObject,
             success: function(data, textStatus, jqXHR) {
               // hide spinner
+              //$('#info').html("<strong>get activities success</strong>");
               app.spinner.hide();
 
               // set default content
@@ -239,43 +240,44 @@ $(document).ready(function() {
 
               $('#duration').html("<span class='fa fa-angle-right'></span> " + app.duration + "mins");
 
-              $('#sensor').html("<span class='fa fa-router'></span> " + app.getSensor(app.sensor).name);
+              $('#sensor').html("<span class='fa fa-sliders'></span> " + app.getSensor(app.sensor).name);
 
               $('#sensorphoto').attr('src', app.getSensor(app.sensor).image);
 
-              $('#room').html("<span class='fa fa-road'></span> " + app.room);
+              $('#room').html("<span class='fa fa-bed'></span> Room " + app.room);
 
-		      $('#pan-u').click(function () {
-                $('#roomphoto').panzoom("pan", 0, -20, {relative: true, animate: true});
-    		  });
-    		  $('#pan-r').click(function () {
-        		$('#roomphoto').panzoom("pan", 20, 0, {relative: true, animate: true});
-    		  });
-    		  $('#pan-d').click(function () {
-        		$('#roomphoto').panzoom("pan", 0, 20, {relative: true, animate: true});
-    		  });
-    		  $('#pan-l').click(function () {
-        		$('#roomphoto').panzoom("pan", -20, 0, {relative: true, animate: true});
-    		  });
+    		      $('#pan-u').click(function () {
+                    $('#roomphoto').panzoom("pan", 0, -20, {relative: true, animate: true});
+        		  });
+        		  $('#pan-r').click(function () {
+            		$('#roomphoto').panzoom("pan", 20, 0, {relative: true, animate: true});
+        		  });
+        		  $('#pan-d').click(function () {
+            		$('#roomphoto').panzoom("pan", 0, 20, {relative: true, animate: true});
+        		  });
+        		  $('#pan-l').click(function () {
+            		$('#roomphoto').panzoom("pan", -20, 0, {relative: true, animate: true});
+        		  });
 
               $('#roomphoto').attr('src', 'wedo_hospitality/images/room_photo.grey.jpg');
 
               $('#roomphoto').panzoom({
-          		$zoomIn: $("#zoomin-ctl"),
-            	$zoomOut: $("#zoomout-ctl"),
-            	$reset: $("#reset"),
-		        contain: "invert", //"invert",
-        		minScale: 1,
-            	maxScale: 2
-        	  });
+            		$zoomIn: $("#zoomin-ctl"),
+              	$zoomOut: $("#zoomout-ctl"),
+              	$reset: $("#reset"),
+    		        contain: "invert", //"invert",
+            		minScale: 1,
+                maxScale: 2
+          	  });
 
-              $('#roomphoto').panzoom("zoom", 3, {increment: 0.1});
+              $('#roomphoto').panzoom("zoom", 1, {increment: 0.1});
 
-              $('#roomphoto').panzoom("pan", app.rooms[app.room*1].panX, app.rooms[app.room*1].panY, {relative: true, animate: true});
-
+              //$('#roomphoto').panzoom("pan", app.rooms[app.room*1].panX, app.rooms[app.room*1].panY, {relative: true, animate: true});
+              $('#roomphoto').panzoom("pan", app.rooms[0].panX, app.rooms[0].panY, {relative: true, animate: true});
 
               // if wrong demo, get no responses
               if (!data.length) {
+                $('#errorwe').html("<strong>data.length == 0</strong>");
                 $.growlUI('error', 'invalid form values found');
                 return;
               };
@@ -286,6 +288,7 @@ $(document).ready(function() {
                 xml = $($.parseXML(data[0]));
 
               } catch(err){
+                $('#errorwe').html("<strong>invalid form values found</strong>");
                 $.growlUI('error', 'invalid form values found');
                 return;
               };
@@ -295,6 +298,7 @@ $(document).ready(function() {
 
               // if wrong login, get 1 response with result code >0 and error_msg Login failed
               if (fault.length) {
+                $('#errorwe').html("<strong>" + fault.text() + "</strong>");
                 $.growlUI("Error", fault.text());
                 return;
               };
@@ -305,7 +309,7 @@ $(document).ready(function() {
               if (total.text() == 0) {
                 // add activity if not found
                 app.addActivity();
-
+                $('#errorwe').html("<strong>0 activities</strong>");
                 return;
               };
 
@@ -325,6 +329,7 @@ $(document).ready(function() {
                 xml = $($.parseXML(data[1]));
 
               } catch(err){
+                $('#errorwe').html("<strong>failed to parse xml result</strong>");
                 $.growlUI('error', 'failed to parse xml result');
                 return;
               };
@@ -344,10 +349,9 @@ $(document).ready(function() {
               // get resource photo
               try {
                 xml = $($.parseXML(data[2]));
-
                 // get mime type
                 mime_type = xml.find('file_mime_type');
-
+                //$('#errorwe').html("<strong>parseXML: " + xml.text() + "</strong>");
                 // get file data
                 file_data = xml.find('file_data');
 
@@ -356,26 +360,8 @@ $(document).ready(function() {
                 app.resource['file_data'] = file_data.text();
 
               } catch(err){
+                $('#errorwe').html("<strong>Error getting file_data: " + err + "</strong>");
               };
-
-
-              // get resource photo
-              try {
-                xml = $($.parseXML(data[3]));
-
-                // get mime type
-                mime_type = xml.find('file_mime_type');
-
-                // get file data
-                file_data = xml.find('file_data');
-
-                app.resource['vehicle_mime_type'] = mime_type.text();
-
-                app.resource['vehicle_file_data'] = file_data.text();
-
-              } catch(err){
-              };
-
 
               // set content
               $('#worktype').html(app.getWorktype(app.activity['worktype']).name);
@@ -384,15 +370,15 @@ $(document).ready(function() {
 
               $('#cell').html("<span class='fa fa-phone'></span> " + app.activity['cell']);
 
-              $('#sensor').html("<span class='fa fa-router'></span> " + app.getSensor(app.activity['sensor']).name);
+              $('#sensor').html("<span class='fa fa-sliders'></span> " + app.getSensor(app.activity['car']).name);
 
-              $('#sensorphoto').attr('src', app.getSensor(app.activity['sensor']).image);
+              $('#sensorphoto').attr('src', app.getSensor(app.activity['car']).image);
 
-              $('#room').html("<span class='fa fa-road'></span> " + app.activity['room']);
+              $('#room').html("<span class='fa fa-bed'></span> Room " + app.activity['track']);
 
-              $('#roomphoto').panzoom("zoom", 3, {increment: 0.1});
+              $('#roomphoto').panzoom("zoom", 1, {increment: 0.1});
 
-              $('#roomphoto').panzoom("pan", app.rooms[app.room*1].panX, app.rooms[app.room*1].panY, {relative: true, animate: true});
+              $('#roomphoto').panzoom("pan", app.rooms[0].panX, app.rooms[0].panY, {relative: true, animate: true});
 
 
 
@@ -442,7 +428,7 @@ $(document).ready(function() {
 		  // do nothing
 		}
               }
-
+    $('#errorwe').html("<strong>" + app.resource + "</strong>");
             },
             error: function(jqXHR, textStatus, errorThrown) {
               // hide spinner
@@ -490,11 +476,11 @@ $(document).ready(function() {
             value: app.priority
           },
           {
-            label: 'room',
+            label: 'track',
             value: app.room
           },
           {
-            label: 'sensor',
+            label: 'car',
             value: app.sensor
           }
 
