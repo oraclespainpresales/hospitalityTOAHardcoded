@@ -161,7 +161,7 @@ $(document).ready(function() {
       //this.activitytypename = this.getWorktype(getUrlVars(document.URL).ac).name||'Cozmo';
       this.activitytypename = 'Cozmo';
       //this.activitytype = this.getWorktype(getUrlVars(document.URL).ac).id||'87';
-      this.activitytype = '87';
+      this.activitytype = '77';
       this.priorityname = this.getPriority(getUrlVars(document.URL).pr).name||'unknown';
 
       this.priority = this.getPriority(getUrlVars(document.URL).pr).id||'unknown';
