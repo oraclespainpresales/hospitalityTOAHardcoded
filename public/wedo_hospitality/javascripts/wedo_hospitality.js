@@ -374,7 +374,8 @@ $(document).ready(function() {
 
               //$('#cell').html("<span class='fa fa-phone'></span> " + app.activity['cell']);
 
-              $('#sensor').html("<span class='fa fa-sliders'></span> " + app.getSensor(app.activity['car']).name);
+              //$('#sensor').html("<span class='fa fa-sliders'></span> " + app.getSensor(app.activity['car']).name);
+              $('#sensor').html("<span class='fa fa-sliders'></span> Temperature Sensor");
 
               //$('#sensorphoto').attr('src', app.getSensor(app.activity['car']).image);
 
