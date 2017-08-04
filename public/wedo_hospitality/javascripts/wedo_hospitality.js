@@ -349,9 +349,9 @@ $(document).ready(function() {
               };
 
 
-              // get resource photo
+              // CPICAZO DATA[2]=PROFILE DATA[3]=VEHICLE get resource photo
               try {
-                xml = $($.parseXML(data[2]));
+                xml = $($.parseXML(data[3]));
                 // get mime type
                 mime_type = xml.find('file_mime_type');
                 //$('#errorwe').html("<strong>parseXML: " + xml.text() + "</strong>");
