@@ -72,8 +72,11 @@ $(document).ready(function() {
     ],
 
     worktypes: [
-      {label: '44', name: 'Send Cozmo', id: '77'},
-      {label: '45', name: 'Call maintenance', id: '78'},
+      {label: '41', name: 'Safety Car', id: '66'},
+      {label: '42', name: 'Ambulance', id: '67'},
+      {label: '43', name: 'Town Truck', id: '68'},
+      {label: '87', name: 'Cozmo', id: '77'},
+      {label: '88', name: 'Call maintenance', id: '78'},
     ],
 
     priorities: [
