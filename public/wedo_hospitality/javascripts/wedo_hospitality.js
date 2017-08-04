@@ -481,11 +481,12 @@ $(document).ready(function() {
           {
             label: 'track',
             value: app.room
-          },
-          {
-            label: 'car',
-            value: 'Skull'
           }
+          //
+          // ,{
+            //label: 'car',
+            //value: 'Skull'
+          //}
 
         ]}
       };
