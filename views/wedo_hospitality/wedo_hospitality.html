@@ -113,11 +113,10 @@
             <script type="text/javascript">
                 function sendCozmo() {
                     $.ajax({
-                        url: "COZMO_ENDPOINT",
+                        url: "http://new.soa.digitalpracticespain.com/SH_Gadgets_Helper/SendCozmoService/devices/COZMO",
                         dataType: 'json',
-                        //beforeSend: function (xhr) {
-                        //xhr.setRequestHeader('Authorization', 'Basic ');
-                        //},
+                        contentType: 'application/json',
+                        data: JSON.stringify({"demozone":"MADRID","op":"MAINTENANCE"}),
                         type: "POST",
                         async: true,
                         success: function(data, status) {
