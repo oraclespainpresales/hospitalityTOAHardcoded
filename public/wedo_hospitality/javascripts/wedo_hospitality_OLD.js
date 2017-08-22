@@ -62,22 +62,21 @@ $(document).ready(function() {
 
     cell: null,
 
-    track: null,
+    room: null,
 
-    car: null,
+    sensor: null,
 
-    cars: [
-      {label: '266', name: 'Thermo', id: '266', image: 'wedo_hospitality/images/thermo_comp.jpg'},
-      {label: '267', name: 'Guardian', id: '267', image: 'wedo_hospitality/images/guardian_comp.jpg'},
-      {label: '268', name: 'Skull', id: '268', image: 'wedo_hospitality/images/skull_comp.jpg'},
-      {label: '269', name: 'Ground Shock', id: '269', image: 'wedo_hospitality/images/groundshock_comp.jpg'},
+    sensors: [
+      {label: '266', name: 'Light sensor', id: '266', image: 'wedo_hospitality/images/light_sensor.jpg'},
+      {label: '267', name: 'Temperature sensor', id: '267', image: 'wedo_hospitality/images/temperature_sensor.jpg'},
     ],
 
     worktypes: [
-      {label: '42', name: 'Send an Ambulance', id: '66'},
-      {label: '43', name: 'Send a Tow Truck', id: '67'},
-      {label: '41', name: 'Send a Safety Car', id: '68'},
-      {label: '44', name: 'Send Cozmo', id: '77'},
+      {label: '41', name: 'Safety Car', id: '66'},
+      {label: '42', name: 'Ambulance', id: '67'},
+      {label: '43', name: 'Town Truck', id: '68'},
+      {label: '87', name: 'Cozmo', id: '77'},
+      {label: '88', name: 'Call maintenance', id: '78'},
     ],
 
     priorities: [
@@ -86,21 +85,8 @@ $(document).ready(function() {
       {label: '3', name: 'High', id: '3'}
     ],
 
-    tracks:[
-      {id:'00', label: '61', panX: 0, panY: -160},
-      {id:'01', label: '56', panX: 160, panY: -160},
-      {id:'02', label: '57', panX: 320, panY: -160},
-      {id:'03', label: '58', panX: 320, panY: 0},
-      {id:'04', label: '59', panX: 320, panY: 160},
-      {id:'05', label: '60', panX: 160, panY: 160},
-      {id:'06', label: '67', panX: 160, panY: 0},
-      {id:'07', label: '83', panX: 0, panY: 0},
-      {id:'08', label: '84', panX: -160, panY: 0},
-      {id:'09', label: '85', panX: -320, panY: 0},
-      {id:'10', label: '86', panX: -320, panY: 160},
-      {id:'11', label: '62', panX: -160, panY: 160},
-      {id:'12', label: '63', panX: -160, panY: 0},
-      {id:'13', label: '64', panX: -160, panY: -160},
+    rooms:[
+      {id:'28', label: 'room 99', panX: 0, panY: 0},
     ],
 
     // activity details
@@ -109,23 +95,25 @@ $(document).ready(function() {
     // resource details
     resource: [],
 
-    // get track
-    getTrack: function(a) {
-      // get the track details
-      for (i in this.tracks){
-        if (this.tracks[i].label == a)
-          return this.tracks[i];
+    // get room
+    getRoom: function(a) {
+      console.log("getRoom: " + a);
+      // get the room details
+      for (i in this.rooms){
+        if (this.rooms[i].label == a)
+          return this.rooms[i];
       };
 
       return {id: 'unknown', label: a, panX: 0, panY: 0};
     },
 
-    // get car
-    getCar: function(a) {
-      // get the car details
-      for (i in this.cars){
-        if (this.cars[i].label == a)
-          return this.cars[i];
+    // get sensor
+    getSensor: function(a) {
+      console.log("getSensor: " + a);
+      // get the sensor details
+      for (i in this.sensors){
+        if (this.sensors[i].label == a)
+          return this.sensors[i];
       };
 
       return {label: a, name: a, id: a, image: 'wedo_hospitality/images/imagenotavailable.jpg'};
@@ -133,6 +121,7 @@ $(document).ready(function() {
 
     // get worktype
     getWorktype: function(a) {
+      console.log("getWorkType: " + a);
       // get the work type details
       for (i in this.worktypes){
         if (this.worktypes[i].label == a)
@@ -144,6 +133,7 @@ $(document).ready(function() {
 
     // get priority
     getPriority: function(a) {
+      console.log("getPriority: " + a);
       // get the priority details
       for (i in this.priorities){
         if (this.priorities[i].label == a)
@@ -168,10 +158,10 @@ $(document).ready(function() {
 
       this.apptnumber = getUrlVars(document.URL).ap||Math.floor(Math.random() * 1000000);
 
-      this.activitytypename = this.getWorktype(getUrlVars(document.URL).ac).name||'unknown';
-
-      this.activitytype = this.getWorktype(getUrlVars(document.URL).ac).id||'unknown';
-
+      //this.activitytypename = this.getWorktype(getUrlVars(document.URL).ac).name||'Cozmo';
+      this.activitytypename = 'Cozmo';
+      //this.activitytype = this.getWorktype(getUrlVars(document.URL).ac).id||'87';
+      this.activitytype = '77';
       this.priorityname = this.getPriority(getUrlVars(document.URL).pr).name||'unknown';
 
       this.priority = this.getPriority(getUrlVars(document.URL).pr).id||'unknown';
@@ -188,10 +178,9 @@ $(document).ready(function() {
 
       this.status = "pending";
 
-      this.car = getUrlVars(document.URL).ca||'unknown';
+      this.sensor = getUrlVars(document.URL).ca||'unknown';
 
-      //this.track = this.getTrack(getUrlVars(document.URL).tr).id.lpad("0",2)||'unknown';
-       this.track = this.getTrack(getUrlVars(document.URL).tr).id.lpad("0",2)||'00';
+      this.room = this.getRoom(getUrlVars(document.URL).tr).id.lpad("0",2)||'unknown';
 
       // get activity
       this.getActivity();
@@ -238,6 +227,7 @@ $(document).ready(function() {
             data: myObject,
             success: function(data, textStatus, jqXHR) {
               // hide spinner
+              //$('#info').html("<strong>get activities success</strong>");
               app.spinner.hide();
 
               // set default content
@@ -253,45 +243,44 @@ $(document).ready(function() {
 
               $('#duration').html("<span class='fa fa-angle-right'></span> " + app.duration + "mins");
 
-              $('#car').html("<span class='fa fa-wifi'></span> " + app.getCar(app.car).name);
+              $('#sensor').html("<span class='fa fa-sliders'></span> " + app.getSensor(app.sensor).name);
 
-              $('#carphoto').attr('src', app.getCar(app.car).image);
+              //$('#sensorphoto').attr('src', app.getSensor(app.sensor).image);
 
-              $('#track').html("<span class='fa fa-bed'></span> " + app.track);
+              $('#room').html("<span class='fa fa-bed'></span> Room " + app.room);
 
-          var trackphoto = getUrlVars(document.URL).trackphoto
-          if(trackphoto != 0){
-  		      $('#pan-u').click(function () {
-                  $('#trackphoto').panzoom("pan", 0, -20, {relative: true, animate: true});
-      		  });
-      		  $('#pan-r').click(function () {
-          		$('#trackphoto').panzoom("pan", 20, 0, {relative: true, animate: true});
-      		  });
-      		  $('#pan-d').click(function () {
-          		$('#trackphoto').panzoom("pan", 0, 20, {relative: true, animate: true});
-      		  });
-      		  $('#pan-l').click(function () {
-          		$('#trackphoto').panzoom("pan", -20, 0, {relative: true, animate: true});
-      		  });
+    		      $('#pan-u').click(function () {
+                    $('#roomphoto').panzoom("pan", 0, -20, {relative: true, animate: true});
+        		  });
+        		  $('#pan-r').click(function () {
+            		$('#roomphoto').panzoom("pan", 20, 0, {relative: true, animate: true});
+        		  });
+        		  $('#pan-d').click(function () {
+            		$('#roomphoto').panzoom("pan", 0, 20, {relative: true, animate: true});
+        		  });
+        		  $('#pan-l').click(function () {
+            		$('#roomphoto').panzoom("pan", -20, 0, {relative: true, animate: true});
+        		  });
 
-                $('#trackphoto').attr('src', 'wedo_hospitality/images/track_photo.grey.png');
+              $('#roomphoto').attr('src', 'wedo_hospitality/images/room_photo.grey.jpg');
 
-                $('#trackphoto').panzoom({
+              $('#roomphoto').panzoom({
             		$zoomIn: $("#zoomin-ctl"),
               	$zoomOut: $("#zoomout-ctl"),
               	$reset: $("#reset"),
-  		        contain: "invert", //"invert",
-          		minScale: 1,
-              	maxScale: 2
+    		        contain: "invert", //"invert",
+            		minScale: 1,
+                maxScale: 2
           	  });
 
-                $('#trackphoto').panzoom("zoom", 3, {increment: 0.1});
+              $('#roomphoto').panzoom("zoom", 1, {increment: 0.1});
 
-                $('#trackphoto').panzoom("pan", app.tracks[app.track*1].panX, app.tracks[app.track*1].panY, {relative: true, animate: true});
-          }
+              //$('#roomphoto').panzoom("pan", app.rooms[app.room*1].panX, app.rooms[app.room*1].panY, {relative: true, animate: true});
+              $('#roomphoto').panzoom("pan", app.rooms[0].panX, app.rooms[0].panY, {relative: true, animate: true});
 
               // if wrong demo, get no responses
               if (!data.length) {
+                $('#errorwe').html("<strong>data.length == 0</strong>");
                 $.growlUI('error', 'invalid form values found');
                 return;
               };
@@ -302,6 +291,7 @@ $(document).ready(function() {
                 xml = $($.parseXML(data[0]));
 
               } catch(err){
+                $('#errorwe').html("<strong>invalid form values found</strong>");
                 $.growlUI('error', 'invalid form values found');
                 return;
               };
@@ -311,6 +301,7 @@ $(document).ready(function() {
 
               // if wrong login, get 1 response with result code >0 and error_msg Login failed
               if (fault.length) {
+                $('#errorwe').html("<strong>" + fault.text() + "</strong>");
                 $.growlUI("Error", fault.text());
                 return;
               };
@@ -321,7 +312,7 @@ $(document).ready(function() {
               if (total.text() == 0) {
                 // add activity if not found
                 app.addActivity();
-
+                $('#errorwe').html("<strong>0 activities</strong>");
                 return;
               };
 
@@ -341,6 +332,7 @@ $(document).ready(function() {
                 xml = $($.parseXML(data[1]));
 
               } catch(err){
+                $('#errorwe').html("<strong>failed to parse xml result</strong>");
                 $.growlUI('error', 'failed to parse xml result');
                 return;
               };
@@ -357,13 +349,12 @@ $(document).ready(function() {
               };
 
 
-              // get resource photo
+              // CPICAZO DATA[2]=PROFILE DATA[3]=VEHICLE get resource photo
               try {
-                xml = $($.parseXML(data[2]));
-
+                xml = $($.parseXML(data[3]));
                 // get mime type
                 mime_type = xml.find('file_mime_type');
-
+                //$('#errorwe').html("<strong>parseXML: " + xml.text() + "</strong>");
                 // get file data
                 file_data = xml.find('file_data');
 
@@ -372,44 +363,29 @@ $(document).ready(function() {
                 app.resource['file_data'] = file_data.text();
 
               } catch(err){
+                $('#errorwe').html("<strong>Error getting file_data: " + err + "</strong>");
               };
-
-
-              // get resource photo
-              try {
-                xml = $($.parseXML(data[3]));
-
-                // get mime type
-                mime_type = xml.find('file_mime_type');
-
-                // get file data
-                file_data = xml.find('file_data');
-
-                app.resource['vehicle_mime_type'] = mime_type.text();
-
-                app.resource['vehicle_file_data'] = file_data.text();
-
-              } catch(err){
-              };
-
 
               // set content
               $('#worktype').html(app.getWorktype(app.activity['worktype']).name);
 
-              $('#name').html("<strong>" + app.activity['name'] + "</strong>");
+              //$('#name').html("<strong>" + app.activity['name'] + "</strong>");
+              $('#name').html("<strong>Send Cozmo</strong>");
 
-              $('#cell').html("<span class='fa fa-phone'></span> " + app.activity['cell']);
+              //$('#cell').html("<span class='fa fa-phone'></span> " + app.activity['cell']);
 
-              $('#car').html("<span class='fa fa-car'></span> " + app.getCar(app.activity['car']).name);
+              //$('#sensor').html("<span class='fa fa-sliders'></span> " + app.getSensor(app.activity['car']).name);
+              $('#sensor').html("<span class='fa fa-sliders'></span> Temperature Sensor");
 
-              $('#carphoto').attr('src', app.getCar(app.activity['car']).image);
+              //$('#sensorphoto').attr('src', app.getSensor(app.activity['car']).image);
 
-              $('#track').html("<span class='fa fa-road'></span> " + app.activity['track']);
-              if(trackphoto != 0){
-                $('#trackphoto').panzoom("zoom", 3, {increment: 0.1});
+              //$('#room').html("<span class='fa fa-bed'></span> Room " + app.activity['track']);
+              $('#room').html("<span class='fa fa-bed'></span> Room 21");
 
-                $('#trackphoto').panzoom("pan", app.tracks[app.track*1].panX, app.tracks[app.track*1].panY, {relative: true, animate: true});
-              }
+              $('#roomphoto').panzoom("zoom", 1, {increment: 0.1});
+
+              $('#roomphoto').panzoom("pan", app.rooms[0].panX, app.rooms[0].panY, {relative: true, animate: true});
+
 
 
              $('#priority').html("<span class='fa fa-angle-right'></span> " + app.getPriority(app.activity['priority']).name);
@@ -435,13 +411,11 @@ $(document).ready(function() {
 
               $('#credence').html(app.resource['credence']);
 
-              $('#rphone').html("<span class='fa fa-phone'></span> " + app.resource['phone']);
+              //$('#rphone').html("<span class='fa fa-phone'></span> " + app.resource['phone']);
 
-              $('#remail').html("<span class='fa fa-envelope'></span> " + app.resource['email']);
+              //$('#remail').html("<span class='fa fa-envelope'></span> " + app.resource['email']);
 
               if (app.resource['file_data'].length>0) $('#file_data').attr('src', 'data:' + app.resource["mime_type"] + ';base64, ' + app.resource["file_data"]);
-
-              if (app.resource['vehicle_file_data'].length>0) $('#vehiclephoto').attr('src', 'data:' + app.resource["vehicle_mime_type"] + ';base64, ' + app.resource["vehicle_file_data"]);
 
 	            if (app.resource['type'] && app.resource['type'].match(/bk/gi)) {
                 $('#status').html("<span class='fa fa-angle-right'></span> " + "not assigned");
@@ -460,7 +434,7 @@ $(document).ready(function() {
 		  // do nothing
 		}
               }
-
+    $('#errorwe').html("<strong>" + app.resource + "</strong>");
             },
             error: function(jqXHR, textStatus, errorThrown) {
               // hide spinner
@@ -509,12 +483,13 @@ $(document).ready(function() {
           },
           {
             label: 'track',
-            value: app.track
-          },
-          {
-            label: 'car',
-            value: app.car
+            value: app.room
           }
+          //
+          // ,{
+            //label: 'car',
+            //value: 'Skull'
+          //}
 
         ]}
       };
