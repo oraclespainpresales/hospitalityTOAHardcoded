@@ -497,7 +497,7 @@ $(document).ready(function() {
         customer_number: app.customernumber,
         worktype: app.activitytype,
         name: app.fullname,
-        cell: app.cell,
+        cell: '666123456',
         language: 1,
         reminder_time: 0,
         message_methods: 0,
