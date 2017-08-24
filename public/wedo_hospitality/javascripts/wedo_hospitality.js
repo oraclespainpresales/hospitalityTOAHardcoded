@@ -510,10 +510,6 @@ $(document).ready(function() {
           {
             label: 'track',
             value: app.track
-          },
-          {
-            label: 'car',
-            value: 'Thermo'
           }
 
         ]}
