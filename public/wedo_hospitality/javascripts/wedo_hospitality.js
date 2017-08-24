@@ -262,21 +262,21 @@ $(document).ready(function() {
           var trackphoto = getUrlVars(document.URL).trackphoto
           if(trackphoto != 0){
   		      $('#pan-u').click(function () {
-                  $('#trackphoto').panzoom("pan", 0, -20, {relative: true, animate: true});
+                  $('#roomphoto').panzoom("pan", 0, -20, {relative: true, animate: true});
       		  });
       		  $('#pan-r').click(function () {
-          		$('#trackphoto').panzoom("pan", 20, 0, {relative: true, animate: true});
+          		$('#roomphoto').panzoom("pan", 20, 0, {relative: true, animate: true});
       		  });
       		  $('#pan-d').click(function () {
-          		$('#trackphoto').panzoom("pan", 0, 20, {relative: true, animate: true});
+          		$('#roomphoto').panzoom("pan", 0, 20, {relative: true, animate: true});
       		  });
       		  $('#pan-l').click(function () {
-          		$('#trackphoto').panzoom("pan", -20, 0, {relative: true, animate: true});
+          		$('#roomphoto').panzoom("pan", -20, 0, {relative: true, animate: true});
       		  });
 
-                $('#trackphoto').attr('src', 'wedo_hospitality/images/room_photo.grey.png');
+                $('#roomphoto').attr('src', 'wedo_hospitality/images/room_photo.grey.png');
 
-                $('#trackphoto').panzoom({
+                $('#roomphoto').panzoom({
             		$zoomIn: $("#zoomin-ctl"),
               	$zoomOut: $("#zoomout-ctl"),
               	$reset: $("#reset"),
@@ -285,9 +285,9 @@ $(document).ready(function() {
               	maxScale: 2
           	  });
 
-                //$('#trackphoto').panzoom("zoom", 3, {increment: 0.1});
+                //$('#roomphoto').panzoom("zoom", 3, {increment: 0.1});
 
-                //$('#trackphoto').panzoom("pan", app.tracks[app.track*1].panX, app.tracks[app.track*1].panY, {relative: true, animate: true});
+                //$('#roomphoto').panzoom("pan", app.tracks[app.track*1].panX, app.tracks[app.track*1].panY, {relative: true, animate: true});
           }
 
               // if wrong demo, get no responses
@@ -406,9 +406,9 @@ $(document).ready(function() {
 
               $('#track').html("<span class='fa fa-square'></span> " + app.activity['track']);
               if(trackphoto != 0){
-                $('#trackphoto').panzoom("zoom", 3, {increment: 0.1});
+                $('#roomphoto').panzoom("zoom", 3, {increment: 0.1});
 
-                $('#trackphoto').panzoom("pan", app.tracks[app.track*1].panX, app.tracks[app.track*1].panY, {relative: true, animate: true});
+                //$('#roomphoto').panzoom("pan", app.tracks[app.track*1].panX, app.tracks[app.track*1].panY, {relative: true, animate: true});
               }
 
 
