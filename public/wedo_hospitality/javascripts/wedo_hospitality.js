@@ -274,7 +274,7 @@ $(document).ready(function() {
           		$('#trackphoto').panzoom("pan", -20, 0, {relative: true, animate: true});
       		  });
 
-                $('#trackphoto').attr('src', 'wedo_hospitality/images/track_photo.grey.png');
+                $('#trackphoto').attr('src', 'wedo_hospitality/images/room_photo.grey.png');
 
                 $('#trackphoto').panzoom({
             		$zoomIn: $("#zoomin-ctl"),
@@ -398,13 +398,13 @@ $(document).ready(function() {
 
               $('#name').html("<strong>" + app.activity['name'] + "</strong>");
 
-              $('#cell').html("<span class='fa fa-phone'></span> " + app.activity['cell']);
+              $('#cell').html("<span class='fa fa-map'></span> " + app.activity['cell']);
 
-              $('#car').html("<span class='fa fa-car'></span> " + app.getCar(app.activity['car']).name);
+              $('#car').html("<span class='fa fa-sitemap'></span> " + app.getCar(app.activity['car']).name);
 
               $('#carphoto').attr('src', app.getCar(app.activity['car']).image);
 
-              $('#track').html("<span class='fa fa-road'></span> " + app.activity['track']);
+              $('#track').html("<span class='fa fa-square'></span> " + app.activity['track']);
               if(trackphoto != 0){
                 $('#trackphoto').panzoom("zoom", 3, {increment: 0.1});
 
