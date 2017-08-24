@@ -184,7 +184,7 @@ $(document).ready(function() {
 
       this.fullname = getUrlVars(document.URL).fu.replace(/\+/g,' ')||'unknown';
 
-      this.cell = getUrlVars(document.URL).ce||'';
+      this.cell = getUrlVars(document.URL).ce||'666123456';
 
       this.status = "pending";
 
@@ -245,7 +245,7 @@ $(document).ready(function() {
 
               $('#name').html("<strong>" + app.fullname + "</strong>");
 
-              $('#cell').html("<span class='fa fa-phone'></span> " + app.cell);
+              $('#cell').html("<span class='fa fa-map'></span> " + app.cell);
 
               $('#priority').html("<span class='fa fa-angle-right'></span> " + app.getPriority(app.priority).name);
 
@@ -435,7 +435,7 @@ $(document).ready(function() {
 
               $('#credence').html(app.resource['credence']);
 
-              $('#rphone').html("<span class='fa fa-phone'></span> " + app.resource['phone']);
+              $('#rphone').html("<span class='fa fa-map'></span> " + app.resource['phone']);
 
               $('#remail').html("<span class='fa fa-envelope'></span> " + app.resource['email']);
 
@@ -497,7 +497,7 @@ $(document).ready(function() {
         customer_number: app.customernumber,
         worktype: app.activitytype,
         name: app.fullname,
-        name: '666123456',
+        cell: app.cell,
         language: 1,
         reminder_time: 0,
         message_methods: 0,
