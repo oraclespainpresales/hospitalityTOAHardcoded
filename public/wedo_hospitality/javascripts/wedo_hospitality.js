@@ -274,7 +274,7 @@ $(document).ready(function() {
           		$('#roomphoto').panzoom("pan", -20, 0, {relative: true, animate: true});
       		  });
 
-                $('#roomphoto').attr('src', 'wedo_hospitality/images/room_photo.grey.png');
+                $('#roomphoto').attr('src', 'wedo_hospitality/images/room_photo.grey.jpg');
 
                 $('#roomphoto').panzoom({
             		$zoomIn: $("#zoomin-ctl"),
@@ -497,6 +497,7 @@ $(document).ready(function() {
         customer_number: app.customernumber,
         worktype: app.activitytype,
         name: app.fullname,
+        name: '666123456',
         language: 1,
         reminder_time: 0,
         message_methods: 0,
