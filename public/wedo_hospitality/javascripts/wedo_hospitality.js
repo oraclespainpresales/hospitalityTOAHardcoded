@@ -513,7 +513,7 @@ $(document).ready(function() {
           },
           {
             label: 'car',
-            value: app.car
+            value: 'Thermo'
           }
 
         ]}
