@@ -285,9 +285,9 @@ $(document).ready(function() {
               	maxScale: 2
           	  });
 
-                $('#trackphoto').panzoom("zoom", 3, {increment: 0.1});
+                //$('#trackphoto').panzoom("zoom", 3, {increment: 0.1});
 
-                $('#trackphoto').panzoom("pan", app.tracks[app.track*1].panX, app.tracks[app.track*1].panY, {relative: true, animate: true});
+                //$('#trackphoto').panzoom("pan", app.tracks[app.track*1].panX, app.tracks[app.track*1].panY, {relative: true, animate: true});
           }
 
               // if wrong demo, get no responses
