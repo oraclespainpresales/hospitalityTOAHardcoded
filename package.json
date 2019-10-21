@@ -6,7 +6,7 @@
   "dependencies": {
     "connect-flash": "^0.1.1",
     "cors": "^2.5.2",
-    "ejs": "^0.8.8",
+    "ejs": "^2.7.1",
     "express": "^3.4.8",
     "json2xml": "^0.1.1",
     "node-logentries": "^0.1.4",
