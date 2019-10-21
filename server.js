@@ -109,9 +109,13 @@ var server = http.createServer(app).listen(config.server.port, config.server.ip,
 /*
  * Https server.
  */
+/**
 var privateKey  = fs.readFileSync(__dirname + '/key.pem').toString();
-
 var certificate = fs.readFileSync(__dirname + '/cert.pem').toString();
+**/
+const SSLCERTFOLDER = '/u01/ssl';
+var privateKey  = fs.readFileSync(SSLCERTFOLDER + "/certificate.key").toString();
+var certificate = fs.readFileSync(SSLCERTFOLDER + "/certificate.fullchain.crt").toString();
 
 var credentials = {key: privateKey, cert: certificate};
 
